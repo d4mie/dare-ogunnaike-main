@@ -1,0 +1,46 @@
+@import './styles/typography.css';
+
+/* CSS Reset and base styles */
+*, *:after, *:before {
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+  user-select: auto;
+}
+
+a {
+  color: inherit;
+  outline: none;
+  text-decoration: none;
+}
+
+body {
+  font-family: var(--font-primary);
+  background: #fff;
+  color: #000;
+  line-height: var(--line-height);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: -0.01em;
+}
+
+h1, h2, h3, a, span, small {
+  font-size: var(--f-s);
+  font-weight: 100;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Example gallery mask for overlays */
+.gallery article .mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}

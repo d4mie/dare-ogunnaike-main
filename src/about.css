@@ -1,0 +1,426 @@
+/* Calame.Bureau About Page Styling */
+
+:root {
+  --primary-color: #000;
+  --secondary-color: #666;
+  --divider-color: #000;
+  --font-primary: 'Neue Haas Grotesk Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-primary);
+  line-height: 1.5;
+  color: var(--primary-color);
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.about-container {
+  display: flex;
+  min-height: 100vh;
+  padding: 3.6rem 2vw 2rem 2vw; /* clear fixed nav and align top rule */
+  width: 100%;
+  max-width: 1400px; /* match header content width */
+  margin: 0 auto;
+  position: relative;
+}
+
+.about-container::before {
+  /* top divider aligned with content width; scrolls with content */
+  content: '';
+  position: absolute;
+  top: 3.4rem; /* sit directly under the nav (header height ~3.2rem) */
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 4vw); /* match header 2vw padding on each side */
+  max-width: 1400px;
+  height: 1px;
+  background-color: var(--divider-color);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Left Column */
+.about-left {
+  flex: 1;
+  padding-right: 2vw; /* align with header padding */
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  align-content: flex-start;
+  padding-top: 0.2rem; /* bring FR/EN block closer to the top */
+}
+
+.about-left h1 {
+  font-size: 2.5rem;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--divider-color);
+  margin: 1.5rem 0;
+}
+
+.about-text {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 1.4vw, 1.1rem);
+}
+
+.language-row {
+  position: relative;
+  max-width: 48rem;
+  padding-left: 0;
+}
+
+.language-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: clamp(1.2rem, 1.6vw, 1.4rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+.language-body {
+  margin: 0;
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  line-height: 1.28;
+  font-weight: 400;
+  /* First line moves right of the label; following lines sit under the label */
+  text-indent: calc(2.4rem + 2.2rem);
+}
+
+.abstract-graphic {
+  margin-top: 2rem;
+  height: 200px;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swirl-graphic {
+  width: 150px;
+  height: 150px;
+  background: #000;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+/* Right Column */
+.about-right {
+  flex: 1;
+  padding: 0 0 0 2vw; /* start flush with left column baseline */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Full width header line */
+.about-container {
+  position: relative;
+  /* Preserve top spacing so content stays below the fixed header */
+  padding-top: 4rem;
+}
+
+/* Header underline is handled inside the Header component; no extra line here */
+
+/* Section dividers with reduced spacing */
+.contact-section {
+  position: relative;
+  margin-top: 0.5rem;  /* equal, minimal gap above divider */
+  padding-top: 0.5rem; /* equal, minimal gap below divider */
+}
+
+.contact-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: var(--divider-color);
+}
+
+.services-section {
+  position: relative;
+  margin-top: 0.5rem;  /* equal, minimal gap above divider */
+  padding-top: 0.5rem; /* equal, minimal gap below divider */
+}
+
+.services-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: var(--divider-color);
+}
+
+.about-nav {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 0.01rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  justify-content: flex-end;
+}
+
+.about-nav a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.about-nav a:hover,
+.about-nav a.active {
+  color: var(--primary-color);
+}
+
+.about-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-top: 0; /* remove extra top spacing above greeting */
+}
+
+.greeting-section {
+  margin: 0 0 1.5rem 0; /* align with top of left column text */
+  display: grid;
+  grid-template-columns: 120px 1px 1fr;
+  column-gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.greeting-section::before {
+  content: '';
+  width: 1px;
+  background-color: var(--divider-color);
+  grid-row: 1;
+}
+
+.greeting-wrapper {
+  grid-column: 3;
+}
+
+.greeting {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin: 0;
+  color: var(--primary-color);
+}
+
+.info-label {
+  font-size: 1.1rem !important;
+  color: var(--primary-color) !important;
+  text-transform: none !important;
+  width: 120px;
+  letter-spacing: normal;
+}
+
+.info-content p {
+  margin-bottom: 0.15rem;
+  font-size: 1.18rem;
+  line-height: 1.4;
+}
+
+/* Right column info rows (Contact + Services) with vertical divider */
+.info-row {
+  display: grid;
+  grid-template-columns: 120px 1px 1fr;
+  column-gap: 1.25rem;
+  align-items: flex-start;
+  margin-bottom: 0.rem;
+  padding-right: 1.5rem;
+}
+
+.info-label {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  color: var(--secondary-color);
+}
+
+.info-divider {
+  width: 1px;
+  background-color: var(--divider-color);
+}
+
+.info-content p {
+  margin-bottom: 0.15rem;
+  font-size: 1.18rem;
+  line-height: 1.4;
+}
+
+.services-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.services-list li {
+  padding: 0.02rem 0;
+  font-size: 1.12rem;
+  line-height: 1.35;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .about-container {
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+  }
+  
+  .about-left,
+  .about-right {
+    padding: 0;
+    border: none;
+  }
+  
+  .about-left {
+    border-bottom: 1px solid var(--divider-color);
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .about-nav {
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 600px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .about-container {
+    padding: 1.5rem 1rem;
+  }
+  
+  .about-left h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.about-container > * {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+body {
+  font-family: 'NeueHaasGroteskText Pro', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', helvetica, arial, sans-serif;
+  background: #fff;
+  color: #181818;
+}
+
+.about-me-container {
+  max-width: 700px;
+  margin: 4rem auto 2rem auto;
+  padding: 0 1.5rem;
+  font-family: 'NeueHaasGroteskText Pro', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', helvetica, arial, sans-serif;
+  color: #181818;
+  background: none;
+  text-align: left;
+}
+
+.about-me-container h1 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-bottom: 2.2rem;
+  letter-spacing: -0.01em;
+}
+
+.about-me-container p {
+  font-size: 1.08rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  color: #222;
+}
+
+.about-me-container section {
+  margin-bottom: 2.5rem;
+}
+
+.about-me-container h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.7rem;
+  color: #444;
+}
+
+.about-me-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.about-me-container li {
+  font-size: 1.01rem;
+  line-height: 1.7;
+  margin-bottom: 0.3rem;
+  color: #222;
+}
+
+.about-contact-list li b {
+  font-weight: 500;
+  color: #444;
+  margin-right: 0.5em;
+}
+
+@media (max-width: 600px) {
+  .about-me-container {
+    max-width: 98vw;
+    padding: 0 0.7rem;
+    margin: 2.5rem 0 1.5rem 0;
+  }
+  .about-me-container h1 {
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+  }
+  .about-me-container h2 {
+    font-size: 0.95rem;
+  }
+}
+
+.wave {
+  display: inline-block;
+  transform-origin: 70% 70%;
+  animation: wave-hand 2s infinite;
+}
+
+@keyframes wave-hand {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  30% { transform: rotate(14deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
+  60% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+  
