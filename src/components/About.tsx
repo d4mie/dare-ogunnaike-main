@@ -48,7 +48,7 @@ const About = () => {
         </a>
         <a
           className="social-link"
-          href="https://www.linkedin.com/in/dareogunnaike"
+          href="https://www.linkedin.com/in/dareogunnaike/"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="LinkedIn profile"
