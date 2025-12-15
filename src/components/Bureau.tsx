@@ -11,7 +11,7 @@ const BureauContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f2f2f2;
+  background-color: #0b0b0b;
   cursor: pointer;
 `;
 
@@ -29,7 +29,7 @@ const BackgroundImage = styled.div<{ $imageUrl: string; $visible: boolean }>`
   transition: opacity 0.3s ease-in-out;
   pointer-events: none;
   z-index: 1;
-  background-color: #f2f2f2;
+  background-color: #0b0b0b;
 `;
 
 const CenteredText = styled.h1`
@@ -37,7 +37,7 @@ const CenteredText = styled.h1`
   font-weight: 500;
   margin: 0;
   padding: 0;
-  font-family: 'NeueHaasGroteskText Pro', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', helvetica, arial, sans-serif;
+  font-family: var(--font-primary);
   mix-blend-mode: exclusion;
   color: white;
   pointer-events: none;
@@ -102,7 +102,7 @@ const Bureau = () => {
           $visible={currentImageIndex === index}
         />
       ))}
-      <CenteredText>Dare.Ogunnaike</CenteredText>
+      <CenteredText>Dare Ogunnaike</CenteredText>
     </BureauContainer>
   );
 };

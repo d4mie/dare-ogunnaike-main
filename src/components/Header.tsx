@@ -60,9 +60,13 @@ const Nav = styled.nav`
   gap: 1.5rem;
   pointer-events: auto;
   align-items: center;
+
+  @media (max-width: 700px) {
+    gap: 0.75rem;
+  }
 `;
 
-const StyledNavLink = styled(NavLink)<{ $isCategory?: boolean }>`
+const StyledNavLink = styled(NavLink)<{ $isCategory?: boolean; $hideOnMobile?: boolean }>`
   text-decoration: none;
   color: #fff;
   font-size: var(--f-s);
@@ -73,6 +77,10 @@ const StyledNavLink = styled(NavLink)<{ $isCategory?: boolean }>`
   transition: color 0.2s;
   &.active, &:hover {
     color: #555;
+  }
+
+  @media (max-width: 700px) {
+    display: ${props => props.$hideOnMobile ? 'none' : 'inline-flex'};
   }
 `;
 
@@ -92,6 +100,10 @@ const XNavLink = styled(NavLink)`
   &:hover, &.active {
     color: #888;
   }
+
+  @media (max-width: 700px) {
+    display: none;
+  }
 `;
 
 const Header = () => {
@@ -105,15 +117,15 @@ const Header = () => {
   return (
     <HeaderContainer>
       <HeaderContent>
-        <Logo href="/">Dare.Ogunnaike</Logo>
+        <Logo href="/">Dare Ogunnaike</Logo>
         <Nav>
           {isCategoryPage && (
             <XNavLink to="/portfolio" aria-label="Show all projects">×</XNavLink>
           )}
-          <StyledNavLink to="/portfolio/architecture" $isCategory>Architecture,</StyledNavLink>
-          <StyledNavLink to="/portfolio/industrial-design" $isCategory>Industrial Design,</StyledNavLink>
-          <StyledNavLink to="/portfolio/art-direction" $isCategory>Art Direction,</StyledNavLink>
-          <StyledNavLink to="/portfolio/brand-identity" $isCategory>Brand Identity</StyledNavLink>
+          <StyledNavLink to="/portfolio/architecture" $isCategory $hideOnMobile>Architecture,</StyledNavLink>
+          <StyledNavLink to="/portfolio/industrial-design" $isCategory $hideOnMobile>Industrial Design,</StyledNavLink>
+          <StyledNavLink to="/portfolio/art-direction" $isCategory $hideOnMobile>Art Direction,</StyledNavLink>
+          <StyledNavLink to="/portfolio/brand-identity" $isCategory $hideOnMobile>Brand Identity</StyledNavLink>
           <StyledNavLink to="/about">About</StyledNavLink>
         </Nav>
       </HeaderContent>

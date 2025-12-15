@@ -25,7 +25,7 @@ const GridContainer = styled.div`
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
-  background: none;
+  background: #0b0b0b;
   box-sizing: border-box;
 
   @media (max-width: 1100px) {
@@ -38,13 +38,13 @@ const GridContainer = styled.div`
     width: 100%;
     background: none;
     box-sizing: border-box;
-    }
   }
-  @media (max-width: 700px) {
+
+  @media (max-width: 900px) {
     display: flex;
     flex-direction: column;
-    gap: 0.2rem;
-    padding: 0.1rem 1vw 0.5rem 1vw;
+    gap: 0.6rem;
+    padding: 0.6rem 4vw 1rem 4vw;
     margin: 0 auto;
     width: 100%;
     background: none;
@@ -64,7 +64,7 @@ const MediaContainer = styled.div`
   aspect-ratio: 4/2.6;
   overflow: hidden;
   cursor: pointer;
-  background: #fff;
+  background: #111;
   width: 100%;
 `;
 
@@ -101,7 +101,7 @@ const ProjectInfo = styled.div`
 const ProjectText = styled.p`
   margin: 0;
   font-size: 1.1rem;
-  color: #222;
+  color: #f3f3f3;
   font-weight: 400;
   text-transform: none;
   letter-spacing: 0.01em;

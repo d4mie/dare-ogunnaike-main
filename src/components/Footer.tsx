@@ -7,18 +7,19 @@ const FooterContainer = styled.footer`
   text-align: center;
   font-family: var(--font-primary);
   font-size: 0.9rem;
-  color: #666;
-  border-top: 1px solid #eee;
+  color: #c8c8c8;
+  border-top: 1px solid #1f1f1f;
   margin-top: auto;
+  background: #0b0b0b;
 `;
 
 const FooterLink = styled.a`
-  color: #111;
+  color: #f3f3f3;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s;
   &:hover {
-    color: #888;
+    color: #e0e0e0;
     text-decoration: underline;
   }
 `;

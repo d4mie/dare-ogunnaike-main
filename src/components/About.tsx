@@ -1,100 +1,84 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import '../about.css';
 
 const About = () => {
-  const [isFollowing, setIsFollowing] = useState(false);
-  const [position, setPosition] = useState(() => ({
-    x: 90,
-    y: typeof window !== 'undefined' ? window.innerHeight - 90 : 90
-  }));
-
-  useEffect(() => {
-    if (!isFollowing) return;
-    const handleMouseMove = (event: MouseEvent) => {
-      setPosition({ x: event.clientX, y: event.clientY });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [isFollowing]);
-
-  const toggleFollow = (event: React.MouseEvent) => {
-    event.stopPropagation();
-    if (!isFollowing) {
-      setPosition({ x: event.clientX, y: event.clientY });
-    }
-    setIsFollowing(prev => !prev);
-  };
-
   return (
     <div className="about-container">
-      <div className="about-left">
-        <div className="about-text">
-          <div className="language-row">
-            <span className="language-label">FR</span>
-            <p className="language-body">
-              Calame.Bureau est un bureau de direction artistique et design graphique basé à Paris, fondé par Arthur Calame en 2018. Le bureau dessine des caractères typographiques, conçoit des identités visuelles et des objets éditoriaux, pour des clients dans un champ de domaines variés.
-            </p>
-          </div>
-          <div className="language-row">
-            <span className="language-label">EN</span>
-            <p className="language-body">
-              Calame.Bureau is a Paris-based art direction practice founded by Arthur Calame in 2018. The bureau designs typefaces, visual identities and editorial objects for clients in a wide range of fields.
-            </p>
-          </div>
-        </div>
-        <div className="abstract-graphic">
-          <div
-            className={`swirl-graphic ${isFollowing ? 'is-following' : ''}`}
-            style={{ left: position.x, top: position.y }}
-            onClick={toggleFollow}
-            aria-label="Moveable logo"
+      <div className="about-hero">
+        <div className="about-portrait">
+          <img
+            src="/images/Dare-Ogunnaike_Portrait.jpg"
+            alt="Portrait of Dare Ogunnaike"
+            loading="lazy"
           />
         </div>
-      </div>
-      
-      <div className="about-right">
-        <div className="about-content">
-          <div className="greeting-section">
-            <div className="greeting-wrapper">
-              <p className="greeting">Hello 👋 Bonjour, n'hésitez pas à nous écrire pour recevoir un portfolio détaillé, ou pour nous rencontrer et discuter d'un projet.<br />
-              Hello, don't hesitate to write to us to receive a detailed portfolio, or to meet and discuss a project.</p>
-            </div>
-          </div>
-          
-          <div className="contact-section info-row">
-            <div className="info-label">Contact</div>
-            <div className="info-divider" />
-            <div className="info-content">
-              <p>@calame.bureau</p>
-              <p>contact@calame-bureau.com</p>
-              <p>+33 (0)1 23 45 67 89</p>
-              <p>123 Rue du Faubourg Saint-Honoré</p>
-              <p>75008 Paris, France</p>
-            </div>
-          </div>
-
-          <div className="services-section info-row">
-            <div className="info-label">Services</div>
-            <div className="info-divider" />
-            <div className="info-content">
-              <ul className="services-list">
-                <li>Branding</li>
-                <li>Art Direction</li>
-                <li>Editorial Design</li>
-                <li>Type Design</li>
-                <li>Book Design</li>
-                <li>Visual Identity</li>
-                <li>Lettering</li>
-                <li>Logotype</li>
-                <li>Lookbook</li>
-                <li>Poster</li>
-                <li>Signage</li>
-                <li>Custom Type</li>
-                <li>Webdesign</li>
-              </ul>
-            </div>
-          </div>
+        <div className="about-copy">
+          <p className="about-lede">
+            Dare is an Art Director and Graphic Designer at Belonwus. Previously, he was a Brand Designer at Rise Vest. He received a BSc in Architecture from the University of Lagos in 2017 and has since built a multifaceted and dynamic career in design, spanning architecture, industrial design, and set design.
+          </p>
+          <p className="about-body">
+            Through his work at Belonwus, Dare has collaborated on projects for Sporting Lagos, Bamboo, Spotify, OctaFX, Piggyvest, Stanbic IBTC, 9mobile, and more. He led the design of the Rise Vest office building in Lagos, redefining the traditional workspace with design solutions that prioritised environmental efficiency, brand ethos and aesthetic appeal for the tech-led business and its employees, and worked with Afrominima to design furniture, household objects, and boutique spaces.
+          </p>
+          <p className="about-body">
+            His influence in the creative field has been highlighted through talks and projects showcased at creative forums like UnderTheHood hosted by Cowrywise and The Huddle.
+          </p>
+          <p className="about-email">
+            <a href="mailto:dareogunnaike@gmail.com">dareogunnaike@gmail.com</a>
+          </p>
         </div>
+      </div>
+
+      <div className="about-social about-social-left">
+        <a
+          className="social-link"
+          href="https://www.instagram.com/dare.ogunnaike/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram profile"
+        >
+          <svg
+            className="social-icon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Z" />
+            <circle cx="12" cy="12" r="3.4" />
+            <circle cx="17.2" cy="6.8" r="0.9" />
+          </svg>
+        </a>
+        <a
+          className="social-link"
+          href="https://www.linkedin.com/in/dareogunnaike"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn profile"
+        >
+          <svg
+            className="social-icon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path d="M5 4h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z" />
+            <path d="M7.2 10h1.7v6.1H7.2z" />
+            <circle cx="8" cy="7.6" r="1" />
+            <path d="M11.2 10h1.7v0.9c.25-.55.9-1.1 1.8-1.1 1.3 0 2.3.9 2.3 2.6V16h-1.7v-3.2c0-.9-.4-1.3-1-1.3s-1.1.5-1.1 1.3V16h-1.7z" />
+          </svg>
+        </a>
+        <a
+          className="social-link"
+          href="https://twitter.com/dareogunnaike"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Twitter profile"
+        >
+          <svg
+            className="social-icon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path d="M18.5 3.5h-13a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2v-13a2 2 0 0 0-2-2Zm-2.9 3.5L12 11.2 9.3 7H7l4 5.8L7.1 17h2.2l2.7-3.9 2.7 3.9h2.2l-4-5.8 3.9-5.5Z" />
+          </svg>
+        </a>
       </div>
     </div>
   );
