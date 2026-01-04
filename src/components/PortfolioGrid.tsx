@@ -21,7 +21,7 @@ const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.2rem 1rem;
-  padding: 3.5rem 2vw 2rem 2vw;
+  padding: 4.6rem 2vw 2rem 2vw; /* top padding clears fixed header and aligns content */
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
@@ -32,7 +32,7 @@ const GridContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem 1rem;
-    padding: 3.3rem 1vw 1.5rem 1vw;
+    padding: 4.2rem 1vw 1.5rem 1vw;
     max-width: 1100px;
     margin: 0 auto;
     width: 100%;
@@ -44,7 +44,7 @@ const GridContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
-    padding: 0.6rem 4vw 1rem 4vw;
+    padding: 1.8rem 4vw 1rem 4vw;
     margin: 0 auto;
     width: 100%;
     background: none;

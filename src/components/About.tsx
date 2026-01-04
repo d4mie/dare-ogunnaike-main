@@ -3,7 +3,7 @@ import '../about.css';
 
 const About = () => {
   return (
-    <div className="about-container">
+  <div className="about-container">
       <div className="about-hero">
         <div className="about-portrait">
           <img
@@ -25,9 +25,9 @@ const About = () => {
           <p className="about-email">
             <a href="mailto:dareogunnaike@gmail.com">dareogunnaike@gmail.com</a>
           </p>
-        </div>
       </div>
-
+    </div>
+    
       <div className="about-social about-social-left">
         <a
           className="social-link"
@@ -79,9 +79,9 @@ const About = () => {
             <path d="M18.5 3.5h-13a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2v-13a2 2 0 0 0-2-2Zm-2.9 3.5L12 11.2 9.3 7H7l4 5.8L7.1 17h2.2l2.7-3.9 2.7 3.9h2.2l-4-5.8 3.9-5.5Z" />
           </svg>
         </a>
-      </div>
     </div>
-  );
+  </div>
+);
 };
 
 export default About;

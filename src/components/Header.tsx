@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import '../styles/typography.css';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const HeaderContainer = styled.header`
   position: fixed;
@@ -25,11 +25,13 @@ const HeaderContainer = styled.header`
 
 const HeaderContent = styled.div`
   width: 100%;
+  max-width: 1400px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.8rem 2vw 0.6rem 2vw;
+  padding: 1rem 2vw;
   position: relative;
+  margin: 0 auto;
 
   @media (max-width: 1100px) {
     padding: 0 1vw;
@@ -107,25 +109,11 @@ const XNavLink = styled(NavLink)`
 `;
 
 const Header = () => {
-  const location = useLocation();
-  const isCategoryPage = [
-    '/portfolio/architecture',
-    '/portfolio/industrial-design',
-    '/portfolio/art-direction',
-    '/portfolio/brand-identity'
-  ].includes(location.pathname);
   return (
     <HeaderContainer>
       <HeaderContent>
         <Logo href="/">Dare Ogunnaike</Logo>
         <Nav>
-          {isCategoryPage && (
-            <XNavLink to="/portfolio" aria-label="Show all projects">×</XNavLink>
-          )}
-          <StyledNavLink to="/portfolio/architecture" $isCategory $hideOnMobile>Architecture,</StyledNavLink>
-          <StyledNavLink to="/portfolio/industrial-design" $isCategory $hideOnMobile>Industrial Design,</StyledNavLink>
-          <StyledNavLink to="/portfolio/art-direction" $isCategory $hideOnMobile>Art Direction,</StyledNavLink>
-          <StyledNavLink to="/portfolio/brand-identity" $isCategory $hideOnMobile>Brand Identity</StyledNavLink>
           <StyledNavLink to="/about">About</StyledNavLink>
         </Nav>
       </HeaderContent>
