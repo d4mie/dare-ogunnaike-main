@@ -1,174 +1,171 @@
-/* Calame.Bureau About Page Styling */
+/* About page styling (layout inspired by ghazalforoutan.com/about) */
 
-:root {
-  --primary-color: #f3f3f3;
-  --secondary-color: #c8c8c8;
-  --divider-color: #2e2e2e;
-  --font-primary: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-serif: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --bg: #0b0b0b;
+.aboutPage {
+  min-height: 100vh;
+  padding: 3rem;
+  background: #000;
+  color: rgba(255, 255, 255, 0.85);
 }
 
-* {
+.aboutHero {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 2.1rem;
+  align-items: start;
+}
+
+.aboutHero__media {
+  grid-column: span 5;
+  min-width: 0;
+}
+
+.aboutHero__media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.aboutHero__text {
+  grid-column: span 7;
+  min-width: 0;
+}
+
+.aboutBioHighlight {
+  margin: 0;
+  font-family: ui-serif, Georgia, 'Times New Roman', Times, serif;
+  font-size: clamp(1.85rem, 2.6vw, 2.75rem);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.aboutEmail {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 0, 0, 0.85);
+  text-underline-offset: 0.22em;
+}
+
+.aboutCvGrid {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 3.4rem;
+  align-items: start;
+}
+
+.aboutCvCol {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  gap: 2.8rem;
+  min-width: 0;
+}
+
+.aboutCvSpacer {
+  grid-column: span 1;
+}
+
+.aboutCvSocial {
+  grid-column: span 3;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  padding-top: 0.2rem;
+  min-width: 0;
+}
+
+.aboutCvTitle {
+  margin: 0 0 1rem 0;
+  font-family: var(--font-primary);
+  font-size: 1.05rem;
+  font-weight: 850;
+  line-height: 1.2;
+  letter-spacing: 0em;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.aboutCvBody,
+.aboutCvList {
+  font-family: var(--font-primary);
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.aboutCvBody p {
+  margin: 0;
+}
+
+.aboutCvList {
+  list-style: none;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
-.about-container {
-  position: relative;
-  min-height: 100vh;
-  padding: 4.6rem 3vw 4rem 3vw; /* top spacing aligned to fixed header */
-  background: var(--bg);
-  color: var(--primary-color);
+.aboutCvList li {
+  margin: 0 0 1.05rem 0;
+}
+
+.aboutCvList--tight li {
+  margin-bottom: 0.4rem;
+}
+
+.aboutLink,
+.aboutCvList a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 0, 0, 0.85);
+  text-underline-offset: 0.22em;
+}
+
+.aboutSocialLink {
+  display: inline-block;
   font-family: var(--font-primary);
-  overflow: hidden;
-}
-
-.about-hero {
-  display: grid;
-  grid-template-columns: minmax(320px, 520px) 1fr;
-  gap: clamp(2rem, 4vw, 3.5rem);
-  align-items: center;
-  margin: 1rem auto 3rem auto;
-  max-width: 1200px;
-}
-
-.about-portrait {
-  width: 100%;
-  border: 1px solid #1f1f1f;
-  background: #111;
-}
-
-.about-portrait img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: grayscale(100%);
-}
-
-.about-copy {
-  display: flex;
-  flex-direction: column;
-  gap: 1.4rem;
-  font-family: var(--font-primary);
-  font-size: clamp(1.2rem, 1.35vw, 1.35rem);
-  line-height: 1.6;
+  font-size: 1.6rem;
   font-weight: 400;
-}
-
-.about-lede,
-.about-body {
-  font-size: inherit;
-  line-height: inherit;
-  font-weight: inherit;
-}
-
-.about-email a {
-  color: var(--primary-color);
+  line-height: 1.2;
+  letter-spacing: 0.011em;
+  color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
-  font-size: clamp(1.1rem, 1.5vw, 1.25rem);
-  border-bottom: 1px solid rgba(255,255,255,0.35);
-  padding-bottom: 0.2rem;
 }
 
-.about-meta {
-  border-top: 1px solid #1f1f1f;
-  margin: 0 auto;
-  padding-top: 2rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.8rem;
-  max-width: 1200px;
-}
-
-.meta-block {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.meta-title {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: var(--secondary-color);
-  font-family: var(--font-primary);
-}
-
-.meta-block p {
-  font-size: 0.98rem;
-  line-height: 1.5;
-  color: var(--primary-color);
-}
-
-.about-social {
-  margin: 1.5rem 0 0 0;
-  display: flex;
-  gap: 0.75rem;
-}
-
-.about-social-left {
-  justify-content: flex-start;
-}
-
-.social-link {
-  color: var(--primary-color);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.social-link:hover {
-  opacity: 0.8;
-  transform: translateY(-2px);
-}
-
-.social-icon {
-  width: 22px;
-  height: 22px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.6;
+.aboutSocialLink:hover {
+  color: #ff3a3d;
 }
 
 @media (max-width: 900px) {
-  .about-container {
-    padding: 4.6rem 6vw 3rem 6vw;
+  .aboutPage {
+    padding: 1.25rem;
   }
-  .about-hero {
-    grid-template-columns: 1fr;
-    gap: 1.8rem;
-  }
-  .about-portrait {
-    max-width: 620px;
-    margin: 0 auto;
-  }
-  .about-copy {
-    max-width: 720px;
-    margin: 0 auto;
-  }
-}
 
-@media (max-width: 600px) {
-  .about-container {
-    padding: 4.6rem 5vw 3rem 5vw;
+  .aboutHero {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
   }
-  .about-copy {
-    font-size: 1.02rem;
+
+  .aboutHero__media,
+  .aboutHero__text {
+    grid-column: 1 / -1;
   }
-  .about-lede {
-    font-size: 1.35rem;
+
+  .aboutCvGrid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
-  .about-email a {
-    font-size: 1.05rem;
+
+  .aboutCvCol,
+  .aboutCvSpacer,
+  .aboutCvSocial {
+    grid-column: 1 / -1;
   }
-  .meta-block p {
-    font-size: 0.95rem;
+
+  .aboutCvSpacer {
+    display: none;
   }
 }
   
