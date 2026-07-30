@@ -9,7 +9,9 @@ const About = () => {
           <img
             src="/images/Dare-Ogunnaike_Portrait.jpg"
             alt="Portrait of Dare Ogunnaike"
-            loading="lazy"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
           />
         </div>
 

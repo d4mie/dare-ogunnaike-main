@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 export interface Project {
@@ -275,6 +275,60 @@ const CATEGORY_MAP: Record<string, string[]> = {
   ]
 };
 
+const LazyVideo: React.FC<{ src: string; active: boolean }> = ({ src, active }) => {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useEffect(() => {
+    const node = videoRef.current;
+    if (!node || shouldLoad) return;
+
+    if (typeof IntersectionObserver === 'undefined') {
+      setShouldLoad(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      entries => {
+        if (entries.some(entry => entry.isIntersecting)) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px 0px' }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [shouldLoad]);
+
+  useEffect(() => {
+    const node = videoRef.current;
+    if (!node || !shouldLoad) return;
+
+    if (active) {
+      const playPromise = node.play();
+      if (playPromise && typeof playPromise.catch === 'function') {
+        playPromise.catch(() => undefined);
+      }
+    } else {
+      node.pause();
+    }
+  }, [active, shouldLoad, src]);
+
+  return (
+    <ProjectVideo
+      ref={videoRef}
+      src={shouldLoad ? src : undefined}
+      muted
+      loop
+      playsInline
+      controls={false}
+      preload="metadata"
+    />
+  );
+};
+
 const PortfolioGrid: React.FC<PortfolioGridProps> = ({ category }) => {
   const [hoveredStates, setHoveredStates] = useState<{ [key: number]: boolean }>({});
 
@@ -303,12 +357,13 @@ const PortfolioGrid: React.FC<PortfolioGridProps> = ({ category }) => {
 
   return (
     <GridContainer>
-        {filteredProjects.map((project) => {
+        {filteredProjects.map((project, index) => {
           const isHovered = hoveredStates[project.id];
           // Always show first media by default, second media when hovered
           const currentMedia = isHovered && project.images.length > 1 
             ? project.images[1] 
             : project.images[0];
+          const eager = index < 3;
           
           return (
             <ProjectCard 
@@ -321,19 +376,14 @@ const PortfolioGrid: React.FC<PortfolioGridProps> = ({ category }) => {
                 onMouseLeave={() => handleMouseLeave(project.id)}
               >
                 {currentMedia?.type === 'video' ? (
-                  <ProjectVideo
-                    src={currentMedia.src}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    controls={false}
-                    preload="auto"
-                  />
+                  <LazyVideo src={currentMedia.src} active />
                 ) : (
                   <ProjectImage
                     src={currentMedia?.src}
                     alt={project.title}
+                    loading={eager ? 'eager' : 'lazy'}
+                    decoding="async"
+                    fetchPriority={eager ? 'high' : 'auto'}
                   />
                 )}
               </MediaContainer>

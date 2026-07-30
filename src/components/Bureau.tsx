@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
@@ -25,7 +25,7 @@ const BackgroundImage = styled.div<{ $imageUrl: string; $visible: boolean }>`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: ${props => props.$visible ? 1 : 0};
+  opacity: ${props => (props.$visible ? 1 : 0)};
   transition: opacity 0.3s ease-in-out;
   pointer-events: none;
   z-index: 1;
@@ -45,7 +45,6 @@ const CenteredText = styled.h1`
   position: relative;
 `;
 
-// Using only JPG images to ensure format compatibility
 const images = [
   '/images/Sporting%20Lagos%20Identity%20with%20Belonwus_04.jpg',
   '/images/rise%20HQ%20with%20DHK_01.jpg',
@@ -53,36 +52,49 @@ const images = [
   '/images/Spotify%20with%20Belonwus_01.jpg',
   '/images/Minies%20Kitchen%20Brand%20Identity_01.jpg',
   '/images/Babban%20Gona%20Identity.jpg',
-  '/images/9mobile%20Set%20Design%20with%20Belonwus_01.jpg'
+  '/images/9mobile%20Set%20Design%20with%20Belonwus_01.jpg',
 ];
 
 const Bureau = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(-1);
+  const [loadedIndexes, setLoadedIndexes] = useState<Set<number>>(() => new Set());
+  const preloadingRef = useRef<Set<number>>(new Set());
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // Preload images and log their status
-    images.forEach((src, index) => {
-      const img = new Image();
-      img.src = src;
-      console.log(`Starting to load image: ${src}`);
-      
-      img.onload = () => {
-        console.log(`Successfully loaded image: ${src}`);
-      };
-      
-      img.onerror = (error) => {
-        console.error(`Failed to load image: ${src}`, error);
-      };
-    });
+  const preloadImage = useCallback((index: number) => {
+    if (index < 0 || index >= images.length) return;
+    if (preloadingRef.current.has(index)) return;
+
+    preloadingRef.current.add(index);
+    const img = new Image();
+    img.decoding = 'async';
+    img.src = images[index];
+    img.onload = () => {
+      setLoadedIndexes(prev => {
+        if (prev.has(index)) return prev;
+        const next = new Set(prev);
+        next.add(index);
+        return next;
+      });
+    };
+    img.onerror = () => {
+      preloadingRef.current.delete(index);
+    };
   }, []);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const containerWidth = window.innerWidth;
     const mouseX = e.clientX;
-    const section = Math.floor((mouseX / containerWidth) * images.length);
+    const section = Math.min(
+      images.length - 1,
+      Math.max(0, Math.floor((mouseX / containerWidth) * images.length))
+    );
+
+    preloadImage(section);
+    // Warm the neighboring sections so the hover feels instant
+    preloadImage(section - 1);
+    preloadImage(section + 1);
     setCurrentImageIndex(section);
-    console.log(`Mouse moved to section ${section}, showing image: ${images[section]}`);
   };
 
   const handleClick = () => {
@@ -90,15 +102,15 @@ const Bureau = () => {
   };
 
   return (
-    <BureauContainer 
-      onMouseMove={handleMouseMove} 
+    <BureauContainer
+      onMouseMove={handleMouseMove}
       onMouseLeave={() => setCurrentImageIndex(-1)}
       onClick={handleClick}
     >
-      {images.map((image, index) => (
+      {Array.from(loadedIndexes).map(index => (
         <BackgroundImage
-          key={image}
-          $imageUrl={image}
+          key={images[index]}
+          $imageUrl={images[index]}
           $visible={currentImageIndex === index}
         />
       ))}
