@@ -27,7 +27,7 @@ const FooterLink = styled.a`
 const Footer = () => {
   return (
     <FooterContainer>
-      © 2025 Developed and Designed by{' '}
+      Design and Development by{' '}
       <FooterLink href="https://damilolaogunnaike.com" target="_blank" rel="noopener noreferrer">
         Ogunnaike Damilola
       </FooterLink>
